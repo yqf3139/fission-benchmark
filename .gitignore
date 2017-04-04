@@ -22,3 +22,16 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# Pycharm IDE
+.idea
+
+# Common backup files
+*.swp
+*.bak
+*.tmp
+*~
+
+vendor/
+
+fission-benchmark

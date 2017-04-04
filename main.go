@@ -17,19 +17,19 @@ limitations under the License.
 package main
 
 import (
-	"os"
 	"fmt"
 	"github.com/urfave/cli"
 	"gopkg.in/yaml.v2"
+	"os"
 	"path"
 
-	controller "github.com/fission/fission/controller/client"
 	"github.com/fission/fission"
-	"time"
+	controller "github.com/fission/fission/controller/client"
 	"github.com/rakyll/hey/requester"
-	"runtime"
 	"net/http"
+	"runtime"
 	"strings"
+	"time"
 )
 
 var triggerKind2WorkloadRunner = map[string]WorkloadRunner{

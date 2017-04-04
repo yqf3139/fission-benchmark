@@ -22,8 +22,8 @@ import (
 	"strings"
 
 	controller "github.com/fission/fission/controller/client"
-	"net/http"
 	"io/ioutil"
+	"net/http"
 )
 
 func fatal(msg string) {

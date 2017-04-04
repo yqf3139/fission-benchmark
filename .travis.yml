@@ -1,0 +1,18 @@
+sudo: required
+dist: trusty
+
+language: go
+go:
+    - 1.8
+    - tip
+
+install:
+   - go get github.com/Masterminds/glide
+
+script:
+   - cd ${TRAVIS_BUILD_DIR}
+   - glide install
+   - go build
+   - hack/verify-gofmt.sh
+   - go test -v -i $(go list ./... | grep -v '/vendor/' | grep -v 'examples/go')
+   - go test -v $(go list ./... | grep -v '/vendor/' | grep -v 'examples/go')

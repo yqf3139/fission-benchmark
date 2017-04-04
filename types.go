@@ -29,7 +29,7 @@ type (
 	}
 
 	Config struct {
-		Version   string
+		Version string
 		Metadata
 		Specs     []Spec
 		Functions []Function
@@ -77,7 +77,7 @@ type (
 		Endpoint string
 	}
 
-	WorkloadRunner func(f Function, w Workload, controller *controller.Client, routerUrl string) (error)
+	WorkloadRunner       func(f Function, w Workload, controller *controller.Client, routerUrl string) error
 	TriggerSpecMarshaler func(slice yaml.MapSlice) (interface{}, error)
 )
 

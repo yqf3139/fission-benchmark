@@ -1,14 +1,17 @@
-hash: 9288011604377f4f335b8d0c154909b31ea2bf8a8be4f9ae99384ee37522b23e
-updated: 2017-04-03T11:16:47.366680556+08:00
+hash: 70feb55965e882624053a9044cde1461b429336eb41b468e0006a0a66532da9c
+updated: 2017-04-04T15:29:25.695105216+08:00
 imports:
 - name: github.com/fission/fission
   version: 01b399187ef018454769f351c110f05956646482
   subpackages:
   - controller/client
-- name: github.com/rakyll/hey
-  version: fb2cc1032663a71dd6d86cdb4cb131aa9410f147
 - name: github.com/urfave/cli
   version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
+- name: golang.org/x/net
+  version: 6acef71eb69611914f7a30939ea9f6e194c78172
+  subpackages:
+  - http2
+  - http2/hpack
 - name: gopkg.in/yaml.v2
   version: 53feefa2559fb8dfa8d81baad31be332c97d6c77
 testImports: []

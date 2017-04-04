@@ -28,6 +28,7 @@ workloads:
     concurrence: 2
     timeout: 60
     qps: 5
+    verbose: false
     trigger:
       kind: Http
       spec:
@@ -40,6 +41,7 @@ workloads:
     concurrence: 10
     timeout: 60
     qps: 60
+    verbose: false
     trigger:
       kind: Http
       spec:
@@ -52,6 +54,7 @@ workloads:
     concurrence: 30
     timeout: 60
     qps: 0
+    verbose: false
     trigger:
       kind: Http
       spec:

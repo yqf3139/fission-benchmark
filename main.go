@@ -25,7 +25,7 @@ import (
 
 	"github.com/fission/fission"
 	controller "github.com/fission/fission/controller/client"
-	"github.com/rakyll/hey/requester"
+	"github.com/yqf3139/fission-benchmark/requester"
 	"net/http"
 	"runtime"
 	"strings"
@@ -76,7 +76,8 @@ var triggerKind2WorkloadRunner = map[string]WorkloadRunner{
 			fmt.Println("Pre request is disabled, testing cold fission")
 		}
 
-		(&requester.Work{
+		fmt.Println("Requesting ... ")
+		report := (&requester.Work{
 			Request:     req,
 			RequestBody: []byte(spec.Data),
 			N:           w.Number,
@@ -85,7 +86,9 @@ var triggerKind2WorkloadRunner = map[string]WorkloadRunner{
 			Timeout:     w.Timeout,
 			Output:      "",
 			EnableTrace: false,
-		}).Run()
+		}).Run(w.Verbose)
+		report.Finalize()
+		report.Print(w.Verbose, w.Verbose)
 
 		err = controller.FunctionDelete(metadata)
 		if err != nil {
@@ -100,7 +103,8 @@ var triggerKind2WorkloadRunner = map[string]WorkloadRunner{
 				return err
 			}
 
-			(&requester.Work{
+			fmt.Println("Requesting ... ")
+			report = (&requester.Work{
 				Request:     req,
 				RequestBody: []byte(spec.Data),
 				N:           w.Number,
@@ -109,7 +113,9 @@ var triggerKind2WorkloadRunner = map[string]WorkloadRunner{
 				Timeout:     w.Timeout,
 				Output:      "",
 				EnableTrace: false,
-			}).Run()
+			}).Run(w.Verbose)
+			report.Finalize()
+			report.Print(w.Verbose, w.Verbose)
 		}
 		fmt.Println()
 		time.Sleep(1 * time.Second)

@@ -57,6 +57,7 @@ type (
 		Concurrence int
 		Timeout     int
 		Qps         int
+		Verbose     bool
 		Trigger
 	}
 

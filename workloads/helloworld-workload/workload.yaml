@@ -14,7 +14,7 @@ functions:
       name: helloworld
     environment:
       name: node
-    file: hello.js
+    file: user.js
     controls:
       - metadata:
           name: control1

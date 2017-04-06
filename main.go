@@ -61,6 +61,7 @@ var triggerKind2WorkloadRunner = map[string]WorkloadRunner{
 		if err != nil {
 			return err
 		}
+		req.Header.Add("Content-Type", "application/json")
 
 		if w.Kind == "warm" {
 			fmt.Print("Pre request to warm the function up ... ")
@@ -102,6 +103,7 @@ var triggerKind2WorkloadRunner = map[string]WorkloadRunner{
 			if err != nil {
 				return err
 			}
+			req.Header.Add("Content-Type", "application/json")
 
 			fmt.Println("Requesting ... ")
 			report = (&requester.Work{

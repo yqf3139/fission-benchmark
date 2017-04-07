@@ -1,6 +1,3 @@
-module.exports = async function(context) {
-    return {
-        status: 200,
-        body: "Hello, world!\n"
-    };
+module.exports = function(context, callback) {
+    callback(200, "hello world");
 }

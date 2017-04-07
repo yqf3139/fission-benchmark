@@ -19,7 +19,11 @@ functions:
       - metadata:
           name: control1
           desc: a single node.js deployment behind k8s service
-        endpoint: "http://192.168.99.109:31320/"
+        endpoint: "http://127.0.0.1:31321/"
+      - metadata:
+          name: control2
+          desc: 5 replicas
+        endpoint: "http://127.0.0.1:31322/"
 workloads:
   - metadata:
       name: simple-workload
@@ -50,8 +54,8 @@ workloads:
   - metadata:
       name: heavy-workload
     kind: warm # cold, warm
-    number: 500
-    concurrence: 30
+    number: 10000
+    concurrence: 300
     timeout: 60
     qps: 0
     verbose: false

@@ -43,21 +43,21 @@ type (
 
 	Function struct {
 		Metadata
-		Environment     Metadata
-		File            string
-		code            string
-		RunControlGroup bool
-		Controls        []Endpoint
+		Environment Metadata
+		File        string
+		code        string
+		Controls    []Endpoint
 	}
 
 	Workload struct {
 		Metadata
-		Kind        string
-		Number      int
-		Concurrence int
-		Timeout     int
-		Qps         int
-		Verbose     bool
+		Kind             string
+		Number           int
+		Concurrence      int
+		Timeout          int
+		Qps              int
+		Verbose          bool
+		DisableKeepAlive bool `yaml:"disableKeepAlive"`
 		Trigger
 	}
 

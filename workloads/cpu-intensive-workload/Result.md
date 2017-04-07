@@ -1,7 +1,7 @@
 Result of fission 01b3991, on a 8-thread server:
 
+`workload.yaml` results:
 ```bash
-
 Running Spec #0
 Function: cpu-intensive, Workload: simple-workload
 Function created, waiting for the sync ... done.
@@ -155,5 +155,84 @@ Summary:
 Status code distribution:
   [200]	5000 responses
 
+```
+
+`hpa-worload.yaml` results:
+
+```bash
+Running Spec #0
+Function: cpu-intensive, Workload: long-long-workload
+Function created, waiting for the sync ... done.
+Pre request to warm the function up ... done.
+Enter y to continue, otherwise skip ... 
+y
+Requesting with disable-keep-alive[true] ... 
+All requests done.
+
+Summary:
+  Total:        303.4516 secs
+  Slowest:      12.0493 secs
+  Fastest:      0.1030 secs
+  Average:      5.9152 secs
+  Requests/sec: 9.8863
+  Total data:   60000 bytes
+  Size/request: 20 bytes
+
+Status code distribution:
+  [200] 3000 responses
+
+Running #0 control control1
+Enter y to continue, otherwise skip ... 
+y
+Requesting with disable-keep-alive[true] ... 
+All requests done.
+
+Summary:
+  Total:        303.8019 secs
+  Slowest:      6.1769 secs
+  Fastest:      0.1677 secs
+  Average:      6.0164 secs
+  Requests/sec: 9.8749
+  Total data:   60000 bytes
+  Size/request: 20 bytes
+  
+Status code distribution:
+  [200] 3000 responses
+
+Running #1 control control2
+Enter y to continue, otherwise skip ... 
+y
+Requesting with disable-keep-alive[true] ... 
+All requests done.
+
+Summary:
+  Total:        65.8950 secs
+  Slowest:      4.9811 secs
+  Fastest:      0.1006 secs
+  Average:      1.1978 secs
+  Requests/sec: 45.5270
+  Total data:   60000 bytes
+  Size/request: 20 bytes
+
+Status code distribution:
+  [200] 3000 responses
+
+Running #2 control control3
+Enter y to continue, otherwise skip ... 
+y
+Requesting with disable-keep-alive[true] ... 
+All requests done.
+
+Summary:
+  Total:        147.3005 secs
+  Slowest:      6.0881 secs
+  Fastest:      0.1007 secs
+  Average:      2.7982 secs
+  Requests/sec: 20.3597
+  Total data:   59980 bytes
+  Size/request: 20 bytes
+
+Status code distribution:
+  [200] 2999 responses
 
 ```

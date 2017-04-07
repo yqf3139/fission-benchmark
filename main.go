@@ -76,20 +76,26 @@ var triggerKind2WorkloadRunner = map[string]WorkloadRunner{
 		} else {
 			fmt.Println("Pre request is disabled, testing cold fission")
 		}
+		fmt.Println("Enter y to continue, otherwise skip ... ")
+		var input string
+		fmt.Scanln(&input)
 
-		fmt.Println("Requesting ... ")
-		report := (&requester.Work{
-			Request:     req,
-			RequestBody: []byte(spec.Data),
-			N:           w.Number,
-			C:           w.Concurrence,
-			QPS:         w.Qps,
-			Timeout:     w.Timeout,
-			Output:      "",
-			EnableTrace: false,
-		}).Run(w.Verbose)
-		report.Finalize()
-		report.Print(w.Verbose, w.Verbose)
+		if input == "y" {
+			fmt.Printf("Requesting with disable-keep-alive[%v] ... \n", w.DisableKeepAlive)
+			report := (&requester.Work{
+				Request:           req,
+				RequestBody:       []byte(spec.Data),
+				N:                 w.Number,
+				C:                 w.Concurrence,
+				QPS:               w.Qps,
+				Timeout:           w.Timeout,
+				Output:            "",
+				EnableTrace:       false,
+				DisableKeepAlives: w.DisableKeepAlive,
+			}).Run(w.Verbose)
+			report.Finalize()
+			report.Print(w.Verbose, w.Verbose)
+		}
 
 		err = controller.FunctionDelete(metadata)
 		if err != nil {
@@ -97,7 +103,15 @@ var triggerKind2WorkloadRunner = map[string]WorkloadRunner{
 		}
 
 		for idx, control := range f.Controls {
-			fmt.Printf("\nRunning #%v control\n", idx)
+			fmt.Printf("\nRunning #%v control %v\n", idx, control.Name)
+			fmt.Println("Enter y to continue, otherwise skip ... ")
+			var input string
+			fmt.Scanln(&input)
+
+			if input != "y" {
+				continue
+			}
+
 			req, err := http.NewRequest(
 				strings.ToUpper(spec.Method), control.Endpoint, nil)
 			if err != nil {
@@ -105,16 +119,17 @@ var triggerKind2WorkloadRunner = map[string]WorkloadRunner{
 			}
 			req.Header.Add("Content-Type", "application/json")
 
-			fmt.Println("Requesting ... ")
-			report = (&requester.Work{
-				Request:     req,
-				RequestBody: []byte(spec.Data),
-				N:           w.Number,
-				C:           w.Concurrence,
-				QPS:         w.Qps,
-				Timeout:     w.Timeout,
-				Output:      "",
-				EnableTrace: false,
+			fmt.Printf("Requesting with disable-keep-alive[%v] ... \n", w.DisableKeepAlive)
+			report := (&requester.Work{
+				Request:           req,
+				RequestBody:       []byte(spec.Data),
+				N:                 w.Number,
+				C:                 w.Concurrence,
+				QPS:               w.Qps,
+				Timeout:           w.Timeout,
+				Output:            "",
+				EnableTrace:       false,
+				DisableKeepAlives: w.DisableKeepAlive,
 			}).Run(w.Verbose)
 			report.Finalize()
 			report.Print(w.Verbose, w.Verbose)

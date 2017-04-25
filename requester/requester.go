@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package requester provides commands to run load tests and display Results.
+// Package requester provides commands to run load tests and display results.
 package requester
 
 import (
@@ -25,7 +25,6 @@ import (
 	"net/http/httptrace"
 	"net/url"
 	"os"
-	"os/signal"
 	"sync"
 	"time"
 
@@ -52,7 +51,7 @@ type Work struct {
 
 	RequestBody []byte
 
-	// N is the total number of requests to make.
+	// N is the Total number of requests to make.
 	N int
 
 	// C is the concurrency level, the number of concurrent workers to run.
@@ -84,10 +83,14 @@ type Work struct {
 	// Optional.
 	ProxyAddr *url.URL
 
-	// Writer is where Results will be written. If nil, Results are written to stdout.
+	// Writer is where results will be written. If nil, results are written to stdout.
 	Writer io.Writer
 
 	Results chan *result
+
+	Stopped bool
+
+	Interrupt chan struct{}
 }
 
 func (b *Work) writer() io.Writer {
@@ -120,7 +123,7 @@ func (b *Work) displayProgress(stopCh chan struct{}) {
 
 // Run makes all the requests, prints the summary. It blocks until
 // all work is done.
-func (b *Work) Run(displayProgress bool) *report {
+func (b *Work) Run(displayProgress bool) *Report {
 	// append hey's user agent
 	ua := b.Request.UserAgent()
 	if ua == "" {
@@ -137,13 +140,12 @@ func (b *Work) Run(displayProgress bool) *report {
 	}
 
 	start := time.Now()
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
+	//c := make(chan os.Signal, 1)
+	//signal.Notify(c, os.Interrupt)
+
 	go func() {
-		<-c
-		stopCh <- struct{}{}
-		close(b.Results)
-		os.Exit(1)
+		<-b.Interrupt
+		b.Stopped = true
 	}()
 
 	b.runWorkers()
@@ -153,7 +155,7 @@ func (b *Work) Run(displayProgress bool) *report {
 	}
 
 	close(b.Results)
-	return newReport(b.writer(), b.N, b.Results, b.Output, time.Now().Sub(start), b.EnableTrace)
+	return NewReport(b.writer(), b.N, b.Results, b.Output, time.Now().Sub(start), b.EnableTrace)
 }
 
 func (b *Work) makeRequest(c *http.Client) {
@@ -237,6 +239,9 @@ func (b *Work) runWorker(n int) {
 	for i := 0; i < n; i++ {
 		if b.QPS > 0 {
 			<-throttle
+		}
+		if b.Stopped {
+			break
 		}
 		b.makeRequest(client)
 	}

@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: benchmark
+  namespace: fission-benchmark
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: benchmark
+    spec:
+      containers:
+      - name: benchmark
+        image: yqf3139/fission-benchmark-bundle:latest
+        env:
+        - name: FISSION_CONTROLLER
+          value: http://controller.fission
+        - name: FISSION_ROUTER
+          value: http://router.fission
+        command: ["/benchmark-bundle"]
+        args: ["service"]

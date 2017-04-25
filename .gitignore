@@ -34,4 +34,4 @@ _testmain.go
 
 vendor/
 
-fission-benchmark
+benchmark-bundle/benchmark-bundle

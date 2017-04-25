@@ -12,7 +12,9 @@ install:
 script:
    - cd ${TRAVIS_BUILD_DIR}
    - glide install
+   - cd benchmark-bundle
    - go build
+   - cd ${TRAVIS_BUILD_DIR}
    - hack/verify-gofmt.sh
    - go test -v -i $(go list ./... | grep -v '/vendor/' | grep -v 'examples/go')
    - go test -v $(go list ./... | grep -v '/vendor/' | grep -v 'examples/go')

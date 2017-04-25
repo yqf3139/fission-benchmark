@@ -1,0 +1,9 @@
+apiVersion: "benchmark.fission.io/v1"
+kind: Instance
+metadata:
+  name: hpa-workload-instance
+  namespace: fission-benchmark
+  labels:
+    config: hpa-workload-config
+spec:
+  status: create-request

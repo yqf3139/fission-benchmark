@@ -1,17 +1,126 @@
-hash: 70feb55965e882624053a9044cde1461b429336eb41b468e0006a0a66532da9c
-updated: 2017-04-04T15:29:25.695105216+08:00
+hash: eff59ec17fbbe706a0bbe838ce232b486a08701cdcd482b514d7dee30f415360
+updated: 2017-04-19T15:45:19.521897919+08:00
 imports:
+- name: github.com/davecgh/go-spew
+  version: 346938d642f2ec3594ed81d874461961cd0faa76
+  subpackages:
+  - spew
 - name: github.com/fission/fission
   version: 01b399187ef018454769f351c110f05956646482
   subpackages:
   - controller/client
+- name: github.com/ghodss/yaml
+  version: 73d445a93680fa1a78ae23a5839bad48f32ba1ee
+- name: github.com/go-openapi/jsonpointer
+  version: 8d96a2dc61536b690bd36b2e9df0b3c0b62825b2
+- name: github.com/go-openapi/jsonreference
+  version: 36d33bfe519efae5632669801b180bf1a245da3b
+- name: github.com/go-openapi/spec
+  version: d1c18b339aece4b16ead6d253b85b6ad7180ea54
+- name: github.com/go-openapi/swag
+  version: 3b6d86cd965820f968760d5d419cb4add096bdd7
+- name: github.com/gogo/protobuf
+  version: 8d70fb3182befc465c4a1eac8ad4d38ff49778e2
+  subpackages:
+  - proto
+  - sortkeys
+- name: github.com/golang/glog
+  version: 23def4e6c14b4da8ac2ed8007337bc5eb5007998
+- name: github.com/google/gofuzz
+  version: fd52762d25a41827db7ef64c43756fd4b9f7e382
+- name: github.com/gorilla/context
+  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+- name: github.com/gorilla/handlers
+  version: 3a5767ca75ece5f7f1440b1d16975247f8d8b221
+- name: github.com/gorilla/mux
+  version: 392c28fe23e1c45ddba891b0320b3b5df220beea
+- name: github.com/mailru/easyjson
+  version: 159cdb893c982e3d1bc6450322fedd514f9c9de3
+  subpackages:
+  - buffer
+  - jlexer
+  - jwriter
+- name: github.com/pborman/uuid
+  version: 3d4f2ba23642d3cfd06bd4b54cf03d99d95c0f1b
+- name: github.com/PuerkitoBio/purell
+  version: 8a290539e2e8629dbc4e6bad948158f790ec31f4
+- name: github.com/PuerkitoBio/urlesc
+  version: 5bd2802263f21d8788851d5305584c82a5c75d7e
+- name: github.com/Sirupsen/logrus
+  version: ba1b36c82c5e05c4f912a88eab0dcd91a171688f
+- name: github.com/spf13/pflag
+  version: 08b1a584251b5b62f458943640fc8ebd4d50aaa5
+- name: github.com/ugorji/go
+  version: f1f1a805ed361a0e078bb537e4ea78cd37dcf065
+  subpackages:
+  - codec
 - name: github.com/urfave/cli
   version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
 - name: golang.org/x/net
   version: 6acef71eb69611914f7a30939ea9f6e194c78172
   subpackages:
+  - context
   - http2
   - http2/hpack
+  - idna
+- name: golang.org/x/sys
+  version: b699b7032584f0953262cb2788a0ca19bb494703
+  subpackages:
+  - unix
+- name: golang.org/x/text
+  version: a263ba8db058568bb9beba166777d9c9dbe75d68
+  subpackages:
+  - cases
+  - internal
+  - internal/tag
+  - language
+  - runes
+  - secure/bidirule
+  - secure/precis
+  - transform
+  - unicode/bidi
+  - unicode/norm
+  - width
+- name: gopkg.in/inf.v0
+  version: 3887ee99ecf07df5b447e9b00d9c0b2adaa9f3e4
 - name: gopkg.in/yaml.v2
   version: 53feefa2559fb8dfa8d81baad31be332c97d6c77
+- name: k8s.io/client-go
+  version: 843f7c4f28b1f647f664f883697107d5c02c5acc
+  subpackages:
+  - 1.5/kubernetes
+  - 1.5/pkg/api
+  - 1.5/pkg/api/meta
+  - 1.5/pkg/api/meta/metatypes
+  - 1.5/pkg/api/resource
+  - 1.5/pkg/api/unversioned
+  - 1.5/pkg/api/v1
+  - 1.5/pkg/apis/extensions/v1beta1
+  - 1.5/pkg/auth/user
+  - 1.5/pkg/conversion
+  - 1.5/pkg/conversion/queryparams
+  - 1.5/pkg/fields
+  - 1.5/pkg/genericapiserver/openapi/common
+  - 1.5/pkg/labels
+  - 1.5/pkg/runtime
+  - 1.5/pkg/runtime/serializer
+  - 1.5/pkg/runtime/serializer/json
+  - 1.5/pkg/runtime/serializer/protobuf
+  - 1.5/pkg/runtime/serializer/recognizer
+  - 1.5/pkg/runtime/serializer/versioning
+  - 1.5/pkg/selection
+  - 1.5/pkg/third_party/forked/golang/reflect
+  - 1.5/pkg/types
+  - 1.5/pkg/util/errors
+  - 1.5/pkg/util/framer
+  - 1.5/pkg/util/intstr
+  - 1.5/pkg/util/json
+  - 1.5/pkg/util/labels
+  - 1.5/pkg/util/rand
+  - 1.5/pkg/util/sets
+  - 1.5/pkg/util/uuid
+  - 1.5/pkg/util/validation
+  - 1.5/pkg/util/validation/field
+  - 1.5/pkg/util/yaml
+  - 1.5/rest
 testImports: []

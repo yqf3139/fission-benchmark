@@ -1,0 +1,9 @@
+apiVersion: "benchmark.fission.io/v1"
+kind: Instance
+metadata:
+  name: big-response-instance
+  namespace: fission-benchmark
+  labels:
+    config: big-response-config
+spec:
+  status: create-request

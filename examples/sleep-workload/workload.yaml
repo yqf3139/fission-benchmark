@@ -1,32 +1,27 @@
-version: v1
+apiVersion: "benchmark.fission.io/v1"
+kind: Config
 metadata:
-  name: sleep-workload
-  desc: Workload for testing if fission-benchmark works
-specs:
+  name: sleep-workload-config
+  namespace: fission-benchmark
+spec:
+  pairs:
   - function: sleep
     workload: simple-workload
   - function: sleep
     workload: medium-workload
   - function: sleep
     workload: heavy-workload
-functions:
-  - metadata:
-      name: sleep
-    environment:
-      name: node
-    file: user.js
+  functions:
+  - name: sleep
     controls:
-      - metadata:
-          name: control1
-          desc: a single node.js deployment behind k8s service
-        endpoint: "http://127.0.0.1:31321/"
-      - metadata:
-          name: control2
-          desc: 5 static replicas
-        endpoint: "http://127.0.0.1:31322/"
-workloads:
-  - metadata:
-      name: simple-workload
+    - name: control1
+      desc: a single node.js deployment behind k8s service
+      endpoint: "http://127.0.0.1:31321/"
+    - name: control2
+      desc: 5 static replicas
+      endpoint: "http://127.0.0.1:31322/"
+  workloads:
+  - name: simple-workload
     kind: warm # cold, warm
     number: 50
     concurrence: 2
@@ -38,8 +33,7 @@ workloads:
       spec:
         method: POST
         data: "{\"size\":100}"
-  - metadata:
-      name: medium-workload
+  - name: medium-workload
     kind: warm # cold, warm
     number: 200
     concurrence: 10
@@ -51,8 +45,7 @@ workloads:
       spec:
         method: POST
         data: "{\"ms\":100}"
-  - metadata:
-      name: heavy-workload
+  - name: heavy-workload
     kind: warm # cold, warm
     number: 5000
     concurrence: 250

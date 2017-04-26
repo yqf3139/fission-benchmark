@@ -7,23 +7,25 @@ spec:
   pairs:
   - function: cpu-intensive
     workload: long-long-workload
+  - function: cpu-intensive
+    workload: long-long-workload2
   functions:
   - name: cpu-intensive
     controls:
-#    - name: control1
-#      desc: a single node.js deployment behind k8s service
-#      endpoint: "http://127.0.0.1:31321/"
-#    - name: control2
-#      desc: 5 static replicas
-#      endpoint: "http://127.0.0.1:31322/"
-#    - metadata:
-#      name: control3
-#      endpoint: "http://127.0.0.1:31323/"
+    - name: control1
+      desc: a single node.js deployment behind k8s service
+      endpoint: "http://127.0.0.1:31321/"
+    - name: control2
+      desc: 5 static replicas
+      endpoint: "http://127.0.0.1:31322/"
+    - metadata:
+      name: control3
+      endpoint: "http://127.0.0.1:31323/"
   workloads:
   - name: long-long-workload
     kind: warm # cold, warm
-    number: 3000
-    concurrence: 60
+    number: 30
+    concurrence: 6
     timeout: 60
     qps: 0
     verbose: false

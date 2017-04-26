@@ -1,32 +1,27 @@
-version: v1
+apiVersion: "benchmark.fission.io/v1"
+kind: Config
 metadata:
-  name: cpu-intensive-workload
-  desc: Workload for testing if fission-benchmark works
-specs:
+  name: cpu-intensive-workload-config
+  namespace: fission-benchmark
+spec:
+  pairs:
   - function: cpu-intensive
     workload: simple-workload
   - function: cpu-intensive
     workload: medium-workload
   - function: cpu-intensive
     workload: long-workload
-functions:
-  - metadata:
-      name: cpu-intensive
-    environment:
-      name: node
-    file: user.js
+  functions:
+  - name: cpu-intensive
     controls:
-      - metadata:
-          name: control1
-          desc: a single node.js deployment behind k8s service
-        endpoint: "http://127.0.0.1:31321/"
-      - metadata:
-          name: control2
-          desc: 5 static replicas
-        endpoint: "http://127.0.0.1:31322/"
-workloads:
-  - metadata:
-      name: simple-workload
+    - name: control1
+      desc: a single node.js deployment behind k8s service
+      endpoint: "http://127.0.0.1:31321/"
+    - name: control2
+      desc: 5 static replicas
+      endpoint: "http://127.0.0.1:31322/"
+  workloads:
+  - name: simple-workload
     kind: warm # cold, warm
     number: 50
     concurrence: 2
@@ -38,8 +33,7 @@ workloads:
       spec:
         method: POST
         data: "{\"ms\":100}"
-  - metadata:
-      name: medium-workload
+  - name: medium-workload
     kind: warm # cold, warm
     number: 200
     concurrence: 10
@@ -51,8 +45,7 @@ workloads:
       spec:
         method: POST
         data: "{\"ms\":100}"
-  - metadata:
-      name: long-workload
+  - name: long-workload
     kind: warm # cold, warm
     number: 5000
     concurrence: 5

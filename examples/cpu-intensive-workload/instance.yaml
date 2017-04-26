@@ -1,0 +1,9 @@
+apiVersion: "benchmark.fission.io/v1"
+kind: Instance
+metadata:
+  name: cpu-intensive-workload-instance
+  namespace: fission-benchmark
+  labels:
+    config: cpu-intensive-workload-config
+spec:
+  status: create-request

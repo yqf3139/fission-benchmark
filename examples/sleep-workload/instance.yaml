@@ -1,0 +1,9 @@
+apiVersion: "benchmark.fission.io/v1"
+kind: Instance
+metadata:
+  name: sleep-instance
+  namespace: fission-benchmark
+  labels:
+    config: sleep-config
+spec:
+  status: create-request

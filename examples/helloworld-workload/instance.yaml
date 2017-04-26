@@ -1,0 +1,9 @@
+apiVersion: "benchmark.fission.io/v1"
+kind: Instance
+metadata:
+  name: helloworkload-instance
+  namespace: fission-benchmark
+  labels:
+    config: helloworkload-config
+spec:
+  status: create-request
